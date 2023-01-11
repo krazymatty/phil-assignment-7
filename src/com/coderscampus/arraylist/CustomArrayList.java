@@ -42,7 +42,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public T remove(int index) throws IndexOutOfBoundsException {
 		inboundsCheck(index);
 		T itemRemoved = get(index);
-		Object[] tempItems = new Object[getSize()];
+		Object[] tempItems = new Object[items.length];
 		System.arraycopy(items, 0, tempItems, 0, index);
 		System.arraycopy(items, index + 1, tempItems, index, size - index - 1);
 		items = tempItems;
