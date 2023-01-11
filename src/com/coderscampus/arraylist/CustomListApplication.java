@@ -4,45 +4,83 @@ public class CustomListApplication {
 
 	public static void main(String[] args) {
 
-		CustomList<Person> myCustomList = new CustomArrayList<>();
+		addToListTest();
+		addToListAtIndexTest();
+		removeItemByIndexTest();
 
-		// Add custom names here or choose the auto name generator below
+	}
+
+	private static void removeItemByIndexTest() {
+		CustomList<Person> myCustomList;
+		myCustomList = new CustomArrayList<>();
+		// Add names to list
+		myCustomList.add(new Person("Frank"));
+		myCustomList.add(new Person("Phil"));
+		myCustomList.add(new Person("Fred"));
+		myCustomList.add(new Person("Joe"));
+		System.out.println("-------- Start Test: .remove(2);");
+		System.out.println("Init Array: Frank, Phil, Fred, & Joe");
+		for (int i = 0; i < 4; i++) {
+			System.out.println("index " + i + ": " + myCustomList.get(i));
+		}
+		System.out.println("Init Array Size: " + myCustomList.getSize());
+		myCustomList.remove(2);
+		System.out.println("\nNew Array after removing Fred from index 2: \n");
+
+		for (int i = 0; i < 4; i++) {
+			if (myCustomList.get(i) != null) {
+				System.out.println("index " + i + ": " + myCustomList.get(i));
+			}
+		}
+		System.out.println("New Array Size: " + myCustomList.getSize());
+		// Tests IndexOutOfBoundsException
+//		System.out.println(myCustomList.get(4));
+		System.out.println("-------- End Test -------\n");
+	}
+
+	private static void addToListAtIndexTest() {
+		CustomList<Person> myCustomList;
+		myCustomList = new CustomArrayList<>();
+		// Add names to list
 		myCustomList.add(new Person("Frank"));
 		myCustomList.add(new Person("Fred"));
 		myCustomList.add(new Person("Joe"));
-
-		// ATTN: CODERS CAMPUS REVIEWER: These variable and the addPeopleCustomList()
-		// method is used to auto generate a bunch of names
-		int autoNamesToGen = 12; // Tell me how many random names to generate.
-		String autoFirstName = "Philip"; // Enter a random name to seed the generator.
-		addPeopleCustomList(autoNamesToGen, autoFirstName, myCustomList);
-
-		// Prints the entire array of first names excluding any null values.
-		int i = 0;  // also used below to print last item in array
-		for (i = 0; i < myCustomList.getSize() && myCustomList.get(i) != null; i++) {
-			System.out.println("Index " + i + ": " + myCustomList.get(i).name);
+		System.out.println("-------- Start Test: .add(int index, T item);");
+		System.out.println("Init Array: Frank, Fred, & Joe");
+		for (int i = 0; i < 3; i++) {
+			if (myCustomList.get(i) != null) {
+				System.out.println("index " + i + ": " + myCustomList.get(i));
+			}
 		}
+		System.out.println("Init Array Size: " + myCustomList.getSize());
+		myCustomList.add(1, new Person("Phil"));
+		System.out.println("\nNew Array after adding Phil at index 1:\n");
 
-		// ATTN: CODERS CAMPUS REVIEWER: The code below is nice to have and not in the requirements.
-		// Prints the name by index number OR the that last item in the array if out of bounds.
-		int indexOfArrayToRetrive = 7;
-		if (myCustomList.get(indexOfArrayToRetrive) != null) {
-			System.out.println("The name at index " + indexOfArrayToRetrive + " is: "
-					+ myCustomList.get(indexOfArrayToRetrive).name);
-		} else {
-			System.out.println("The last name in the array is: " + myCustomList.get(i - 1).name);
+		for (int i = 0; i < 4; i++) {
+			System.out.println("index " + i + ": " + myCustomList.get(i));
 		}
-
-		// Checks the size of the array
-		System.out.println("The Array Size Is: " + myCustomList.getSize());
+		System.out.println("New Array Size: " + myCustomList.getSize());
+		// Tests IndexOutOfBoundsException
+//		System.out.println(myCustomList.get(4));
+		System.out.println("-------- End Test -------\n");
 	}
 
-	// this method is used to auto generate a number of names.
-	private static void addPeopleCustomList(int numberOfNames, String autoFirstName, CustomList<Person> myCustomList) {
-		for (int i = 0; i < numberOfNames; i++) {
-			myCustomList.add(new Person(autoFirstName + " " + (i + 1)));
-
+	private static void addToListTest() {
+		CustomList<Person> myCustomList;
+		myCustomList = new CustomArrayList<>();
+		// Add names to list
+		myCustomList = new CustomArrayList<>();
+		myCustomList.add(new Person("Frank"));
+		myCustomList.add(new Person("Fred"));
+		myCustomList.add(new Person("Joe"));
+		System.out.println("-------- Start Test .add();");
+		System.out.println("Init Array created by .add();");
+		for (int i = 0; i < 3; i++) {
+			System.out.println("index " + i + ": " + myCustomList.get(i));
 		}
+		// Tests IndexOutOfBoundsException
+//		System.out.println(myCustomList.get(4));
+		System.out.println("-------- End Test -------\n");
 	}
 
 }
