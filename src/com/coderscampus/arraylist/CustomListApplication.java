@@ -48,9 +48,7 @@ public class CustomListApplication {
 
 		System.out.println("Init Array Size: " + myCustomList.getSize());
 		for (int i = 0; i < myCustomList.getSize(); i++) {
-			if (myCustomList.get(i) != null) {
 				System.out.println("index " + i + ": " + myCustomList.get(i));
-			}
 		}
 
 		myCustomList.add(1, new Person("King George"));
