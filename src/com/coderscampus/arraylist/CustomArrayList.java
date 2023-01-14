@@ -8,27 +8,38 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		checkArrSize();
+		if (size == items.length) {
+			items = Arrays.copyOf(items, size * 2);
+		}
 		items[size++] = item;
 		return true;
 	}
 
 	@Override
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		checkArrSize();
 		inboundsCheck(index);
-		Object[] itemArrCopy = new Object[size + 1];
+		if (size == items.length) {
+			items = Arrays.copyOf(items, size * 2);
+		}
+		items[size++] = item;
+
+		Object[] itemArrCopy = new Object[items.length];
+
 		System.arraycopy(items, 0, itemArrCopy, 0, index);
 		itemArrCopy[index] = item;
 		System.arraycopy(items, index, itemArrCopy, index + 1, size - index);
+
 		items = itemArrCopy;
-		size++;
 		return true;
 	}
 
 	@Override
 	public int getSize() {
 		return size;
+	}
+
+	public int getArrSize() {
+		return items.length;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,19 +52,21 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
 		inboundsCheck(index);
-		T itemRemoved = get(index);
+
 		Object[] tempItems = new Object[items.length];
+
 		System.arraycopy(items, 0, tempItems, 0, index);
 		System.arraycopy(items, index + 1, tempItems, index, size - index - 1);
+
 		items = tempItems;
 		size--;
-		return itemRemoved;
-	}
 
-	private void checkArrSize() {
-		if (size == items.length) {
-			items = Arrays.copyOf(items, items.length * 2);
+		if (size >= 10 && size <= (items.length / 2)) {
+			items = Arrays.copyOf(tempItems, items.length / 2);
 		}
+
+		T itemRemoved = get(index);
+		return itemRemoved;
 	}
 
 	private void inboundsCheck(int index) {
