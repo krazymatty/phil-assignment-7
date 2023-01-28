@@ -72,8 +72,8 @@ public class CustomListApplication {
 		}
 		System.out.println("Init List Size: " + myCustomList.getSize());
 		System.out.println("New Array Size: " + myCustomList.getArrSize());
-		myCustomList.remove(8);
-		myCustomList.remove(7);
+		myCustomList.remove(3);
+		myCustomList.remove(2);
 		System.out.println("\nNew List Size: " + myCustomList.getSize() + " After removing items from array:");
 		System.out.println("New Array Size: " + myCustomList.getArrSize() + "\n");
 		
